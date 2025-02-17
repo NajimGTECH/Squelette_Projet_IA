@@ -44,9 +44,9 @@ int main() {
         grid.draw(window);
         window.draw(player.shape);
         for (const auto& enemy : enemies) {
-            //if (enemy->isAlive()) {
+            if (enemy->isAlive()) {
             window.draw(enemy->shape);
-            //}
+            }
         }
         window.display();
     }

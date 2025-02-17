@@ -1,6 +1,6 @@
 #include "Entity.hpp"
 
-Entity::Entity(sf::Vector2f pos, sf::Color color, int health) {
+Entity::Entity(sf::Vector2f pos, sf::Color color, int hp) : health(hp) {
     shape.setSize({ 35, 35 });
     shape.setPosition(pos);
     shape.setFillColor(color);

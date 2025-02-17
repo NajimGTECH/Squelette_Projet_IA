@@ -38,14 +38,14 @@ void Player::update(float deltaTime, Grid& grid, std::vector<Entity*> enemies) {
 }
 
 void Player::attack(std::vector<Entity*>enemies) {
-    for (auto& enemy : enemies) {
+	for (auto& enemy : enemies) {
         if (enemy = dynamic_cast<Enemy*>(enemy)) {
             if (enemy->isAlive() && shape.getGlobalBounds().intersects(enemy->shape.getGlobalBounds())) {
                 enemy->takeDamage(DAMAGE);
                 std::cout << "Enemy HP: " << enemy->health << std::endl;
             }
         }
-
-    }
+		
+	}
     std::cout << "Player attacks" << std::endl;
 }
