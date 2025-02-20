@@ -8,7 +8,7 @@ using namespace std;
 using namespace sf;
 
 
-class Enemy : public Entity {
+class EnemyFSM : public Entity {
 public:
     Player& player;
     static constexpr float SPEED = 100.0f;
@@ -20,7 +20,7 @@ public:
 
 
 
-    Enemy(Player& p, sf::Vector2f pos, float radius, int hp);
+    EnemyFSM(Player& p, sf::Vector2f pos, float radius, int hp);
 
     bool detectPlayer(sf::Vector2f playerPos);
     void patrol();

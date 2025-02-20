@@ -2,7 +2,8 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 #include "EnemyFSM.hpp"
-Player::Player(sf::Vector2f pos, int hp) : Entity(pos, sf::Color::Blue, hp), attackTimer(0.f) {}
+
+Player::Player(float x, float y, int hp) : Entity(x, y, sf::Color::Blue, hp), attackTimer(0.f) {}
 
 void Player::update(float deltaTime, Grid& grid, std::vector<Entity*> enemies) {
     sf::Vector2f movement(0.f, 0.f);
@@ -53,7 +54,7 @@ void Player::update(float deltaTime, Grid& grid, std::vector<Entity*> enemies) {
 
 void Player::attack(std::vector<Entity*>enemies) {
 	for (auto& enemy : enemies) {
-        if (enemy = dynamic_cast<Enemy*>(enemy)) {
+        if (enemy = dynamic_cast<Entity*>(enemy)) {
             if (enemy->isAlive() && shape.getGlobalBounds().intersects(enemy->shape.getGlobalBounds())) {
                 enemy->takeDamage(DAMAGE);
                 std::cout << "Enemy HP: " << enemy->health << std::endl;

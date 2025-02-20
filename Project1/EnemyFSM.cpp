@@ -9,14 +9,14 @@ int randLimit(int min, int max) {
     return min + rand() % (max - min + 1);
 }
 
-Enemy::Enemy(Player& p, sf::Vector2f pos, float radiusDetect, int hp) : Entity(pos, sf::Color::Red, hp), player(p), detectionRadius(radiusDetect) {
+EnemyFSM::EnemyFSM(Player& p, sf::Vector2f pos, float radiusDetect, int hp) : Entity(pos.x, pos.y, sf::Color::Red, hp), player(p), detectionRadius(radiusDetect) {
     detectionRadius = 200.0f;
     currentState = PATROL;
 }
 
-bool Enemy::detectPlayer(sf::Vector2f playerPos)
+bool EnemyFSM::detectPlayer(sf::Vector2f playerPos)
 {
-    float distance = std::sqrt(std::pow(player.getpos().x - position.x, 2) + std::pow(player.getpos().y - position.y, 2));
+    float distance = std::sqrt(std::pow(player.shape.getPosition().x - position.x, 2) + std::pow(player.shape.getPosition().y - position.y, 2));
 
     //std::cout << "Distance to player: " << distance << " | Detection Radius: " << detectionRadius << std::endl;
 
@@ -25,7 +25,7 @@ bool Enemy::detectPlayer(sf::Vector2f playerPos)
 
 
 
-void Enemy::patrol()
+void EnemyFSM::patrol()
 {
     shape.setFillColor(sf::Color::Green);
     std::srand(static_cast<unsigned int>(std::time(0)));
@@ -50,7 +50,7 @@ void Enemy::patrol()
     shape.setPosition(position);
 }
 
-void Enemy::chase(sf::Vector2f playerPos)
+void EnemyFSM::chase(sf::Vector2f playerPos)
 {
     shape.setFillColor(sf::Color::Red);
     sf::Vector2f direction = playerPos - position;
@@ -65,7 +65,7 @@ void Enemy::chase(sf::Vector2f playerPos)
 
 
 
-void Enemy::search(sf::Vector2f lastPlayerPos, float deltaTime) {
+void EnemyFSM::search(sf::Vector2f lastPlayerPos, float deltaTime) {
     shape.setFillColor(sf::Color::Yellow);
     float searchTimer = 0.0f;
     static sf::Vector2f searchDirection;
@@ -101,23 +101,23 @@ void Enemy::search(sf::Vector2f lastPlayerPos, float deltaTime) {
 }
 
 
-void Enemy::update(float deltaTime, Grid& grid, std::vector<Entity*> players) {
+void EnemyFSM::update(float deltaTime, Grid& grid, std::vector<Entity*> players) {
     switch (currentState) {
     case PATROL:
         patrol();
-        if (detectPlayer(player.getpos())) currentState = CHASE;
+        if (detectPlayer(player.shape.getPosition())) currentState = CHASE;
         break;
 
     case CHASE:
-        chase(player.getpos());
-        if (!detectPlayer(player.getpos())) {
-            lastPlayerPos = player.getpos();
+        chase(player.shape.getPosition());
+        if (!detectPlayer(player.shape.getPosition())) {
+            lastPlayerPos = player.shape.getPosition();
             currentState = SEARCH;
         }
         break;
 
     case SEARCH:
-        search(player.getpos(), deltaTime);
+        search(player.shape.getPosition(), deltaTime);
         break;
     }
 }

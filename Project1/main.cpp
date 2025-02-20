@@ -2,7 +2,7 @@
 
 #include "Player.hpp"
 #include "EnemyFSM.hpp"
-#include "Enemy.hpp"
+//#include "Enemy.hpp"
 #include "BTEnemy.h"
 #include "Grid.hpp"
 
@@ -19,18 +19,17 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Jeu SFML - IA Ennemis");
     window.setFramerateLimit(60);
 
-    Player player({ 400, 400 }, 10);
     std::vector<Entity*> players;
-    players.push_back(new Player({ 400,400 }, 10));
+    Player player(200, 400, 10);
+    player.shape.setOrigin(player.shape.getSize() / 2.f);
+    players.push_back(new Player(200, 400, 10));
+
     std::vector<Entity*> enemies;
-    enemies.push_back(new Enemy(player, { 100, 100 }, 50.0f, 100));
-    enemies.push_back(new Enemy(player, { 700, 100 }, 50.0f, 100));
+    enemies.push_back(new EnemyFSM(player, sf::Vector2f(100, 100), 50.0f, 100));
+    enemies.push_back(new EnemyFSM(player, sf::Vector2f(700, 100), 50.0f, 100));
 
     Grid grid;
     grid.loadFromFile("map.txt");
-
-    Player player(200, 400, 10);
-    player.shape.setOrigin(player.shape.getSize() / 2.f);
 
     //*BEHAVIOR TREE ENEMY*\\ 
     std::vector<std::shared_ptr<BTEnemy>> btenemies;

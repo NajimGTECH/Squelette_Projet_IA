@@ -1,15 +1,12 @@
 #include "Entity.hpp"
 
-Entity::Entity(sf::Vector2f pos, sf::Color color, int hp) : health(hp) {
+Entity::Entity(float x, float y, sf::Color color, int hp) : health(hp) {
     shape.setSize({ 35, 35 });
-    shape.setPosition(pos);
+    shape.setPosition(x, y);
     shape.setFillColor(color);
+
 }
 
-sf::RectangleShape Entity::getshape()
-{
-    return shape;
-}
 bool Entity::isAlive() const
 {
     return health > 0;
