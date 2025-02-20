@@ -1,8 +1,8 @@
 #include "Player.hpp"
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
-#include "Enemy.hpp"
-Player::Player(float x, float y, int hp) : Entity(x, y, sf::Color::Blue, hp), attackTimer(0.f) {}
+#include "EnemyFSM.hpp"
+Player::Player(sf::Vector2f pos, int hp) : Entity(pos, sf::Color::Blue, hp), attackTimer(0.f) {}
 
 void Player::update(float deltaTime, Grid& grid, std::vector<Entity*> enemies) {
     sf::Vector2f movement(0.f, 0.f);

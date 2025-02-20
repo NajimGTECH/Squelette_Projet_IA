@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Player.hpp"
+#include "EnemyFSM.hpp"
 #include "Enemy.hpp"
 #include "BTEnemy.h"
 #include "Grid.hpp"
@@ -18,10 +19,12 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Jeu SFML - IA Ennemis");
     window.setFramerateLimit(60);
 
-
+    Player player({ 400, 400 }, 10);
+    std::vector<Entity*> players;
+    players.push_back(new Player({ 400,400 }, 10));
     std::vector<Entity*> enemies;
-	  enemies.push_back(new Enemy(100, 100, 10));
-	  enemies.push_back(new Enemy(700, 100, 100));
+    enemies.push_back(new Enemy(player, { 100, 100 }, 50.0f, 100));
+    enemies.push_back(new Enemy(player, { 700, 100 }, 50.0f, 100));
 
     Grid grid;
     grid.loadFromFile("map.txt");
