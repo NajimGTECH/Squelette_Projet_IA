@@ -1,6 +1,4 @@
 #include "grid.hpp"
-#include <fstream>
-#include <iostream>
 
 
 Grid::Grid() {

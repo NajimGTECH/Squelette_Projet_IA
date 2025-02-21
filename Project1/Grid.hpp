@@ -4,6 +4,9 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <fstream>
+#include <iostream>
+
 
 const int GRID_WIDTH = 38;
 const int GRID_HEIGHT = 30;

@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Grid.hpp"
-#include "Pathfinding.h"
 
 class Entity {
 public:
@@ -22,8 +21,10 @@ public:
 
     Entity(float x, float y, sf::Color color, int hp);
     virtual void update(float deltaTime, Grid& grid, std::vector<Entity*> neededEntities) = 0;
+    sf::RectangleShape& getshape();
     bool isAlive() const;
     void takeDamage(int damage);
+
 };
 
 

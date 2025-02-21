@@ -1,13 +1,18 @@
-#ifndef ENEMY_HPP
-#define ENEMY_HPP
+#pragma once
 
 #include "Entity.hpp"
+#include "Player.hpp"
+#include <SFML/Graphics.hpp>  
+
+using namespace std;
+using namespace sf;
 
 class Enemy : public Entity {
 public:
     static constexpr float SPEED = 100.0f;
-    Enemy(float x, float y, int hp);
-    void update(float deltaTime, Grid& grid, std::vector<Entity*> players) override;
-};
 
-#endif // ENEMY_HPP
+
+    Enemy(sf::Vector2f pos, int hp) : Entity(pos, Color::Red, hp) {
+    }
+    virtual void update(float deltaTime, Grid& grid, std::vector<Entity*> players) = 0;
+};

@@ -6,6 +6,7 @@
 Player::Player(float x, float y, int hp) : Entity(x, y, sf::Color::Blue, hp), attackTimer(0.f) {}
 
 void Player::update(float deltaTime, Grid& grid, std::vector<Entity*> enemies) {
+
     sf::Vector2f movement(0.f, 0.f);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) { SPEED = 250.f; }
@@ -45,6 +46,7 @@ void Player::update(float deltaTime, Grid& grid, std::vector<Entity*> enemies) {
         shape.move(movement);
     }
 
+
     attackTimer += deltaTime;
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && attackTimer >= ATTACK_COOLDOWN) {
         attack(enemies);
@@ -54,7 +56,7 @@ void Player::update(float deltaTime, Grid& grid, std::vector<Entity*> enemies) {
 
 void Player::attack(std::vector<Entity*>enemies) {
 	for (auto& enemy : enemies) {
-        if (enemy = dynamic_cast<Entity*>(enemy)) {
+        if (enemy = dynamic_cast<EnemyFSM*>(enemy)) {
             if (enemy->isAlive() && shape.getGlobalBounds().intersects(enemy->shape.getGlobalBounds())) {
                 enemy->takeDamage(DAMAGE);
                 std::cout << "Enemy HP: " << enemy->health << std::endl;

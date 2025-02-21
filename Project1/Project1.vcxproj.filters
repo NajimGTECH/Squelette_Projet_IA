@@ -31,6 +31,12 @@
     <Filter Include="Fichiers sources\Pathfinding">
       <UniqueIdentifier>{2ede3400-4e31-44d2-b878-6c98259f5689}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\GOAP">
+      <UniqueIdentifier>{b6b76ab9-7a38-4c88-a41b-5dd271495652}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GOAP">
+      <UniqueIdentifier>{7e6487ac-7796-4cc6-be35-e28a83545cb1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,10 +48,10 @@
     <ClCompile Include="Player.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="Grid.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Grid.cpp">
+    <ClCompile Include="EnemyFSM.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Blackboard.h">
@@ -87,6 +93,21 @@
     <ClCompile Include="Raycaster.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyGOAP.cpp">
+      <Filter>Fichiers sources\GOAP</Filter>
+    </ClCompile>
+    <ClCompile Include="FleeAction.cpp">
+      <Filter>Fichiers sources\GOAP</Filter>
+    </ClCompile>
+    <ClCompile Include="GOAPPlanner.cpp">
+      <Filter>Fichiers sources\GOAP</Filter>
+    </ClCompile>
+    <ClCompile Include="HuntAction.cpp">
+      <Filter>Fichiers sources\GOAP</Filter>
+    </ClCompile>
+    <ClCompile Include="PatrolAction.cpp">
+      <Filter>Fichiers sources\GOAP</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp">
@@ -95,11 +116,38 @@
     <ClInclude Include="Player.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Grid.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFSM.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
     <ClInclude Include="Enemy.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Grid.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="EnemyGOAP.h">
+      <Filter>Fichiers d%27en-tête\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="GOAPPlanner.h">
+      <Filter>Fichiers d%27en-tête\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="Goal.h">
+      <Filter>Fichiers d%27en-tête\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="FleeAction.h">
+      <Filter>Fichiers d%27en-tête\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Fichiers d%27en-tête\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="HuntAction.h">
+      <Filter>Fichiers d%27en-tête\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="PatrolAction.h">
+      <Filter>Fichiers d%27en-tête\GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Fichiers d%27en-tête\GOAP</Filter>
     </ClInclude>
     <ClInclude Include="BehaviorTree.h">
       <Filter>Fichiers d%27en-tête\BehaviorTree</Filter>
