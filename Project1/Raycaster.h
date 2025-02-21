@@ -8,7 +8,8 @@ class Raycaster {
 public:
     Raycaster() {};
     std::shared_ptr<Entity> attachedEntity;
+    std::vector<sf::Vector2f> intersections;
 
-    std::vector<sf::Vector2f> renderRay(Grid& grid);
+    void renderRay(Grid& grid);
     float degToRad(float degree);
 };

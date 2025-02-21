@@ -196,7 +196,7 @@ NodeState SearchNode::execute(Grid& grid, std::shared_ptr<Blackboard> blackboard
         direction = { ((float)path[1].x * CELL_SIZE + CELL_SIZE / 2.f) - entity->shape.getPosition().x,
                       ((float)path[1].y * CELL_SIZE + CELL_SIZE / 2.f) - entity->shape.getPosition().y };
 
-        float angle = atan2(direction.y, direction.x) * -180 / 3.14159265;
+        float angle = atan2(direction.y, direction.x) * 180 / 3.14159265;
         
         if (angle < 0)
             angle += 360;

@@ -66,16 +66,7 @@ int main() {
         grid.draw(window);
 
         for (auto& btenemy : btenemies) {
-            auto rayIntersections = btenemy->raycast.renderRay(grid);
-            sf::VertexArray fov_Vizualisation(sf::TrianglesFan, rayIntersections.size() + 1);
-            std::cout << "Intersections count: " << rayIntersections.size() << std::endl;
-            fov_Vizualisation[0].position = btenemy->shape.getPosition();
-
-            for (size_t i = 1; i < rayIntersections.size() + 1; i++)
-            {
-                fov_Vizualisation[i].position = rayIntersections[i - 1];
-            }
-            window.draw(fov_Vizualisation);
+            window.draw(btenemy->fov_Vizualisation);
         }
 
         window.draw(player.shape);
@@ -83,7 +74,7 @@ int main() {
         for (const auto& btenemy : btenemies)
         {
             window.draw(btenemy->radius);
-            window.draw(btenemy->radiusVision);
+            //window.draw(btenemy->radiusVision);
             window.draw(btenemy->shape);
         }
 

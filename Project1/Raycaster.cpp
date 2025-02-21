@@ -29,10 +29,9 @@ sf::Vector2f normalize(const sf::Vector2f& vector) {
 }
 
 
-std::vector<sf::Vector2f> Raycaster::renderRay(Grid& grid)
+void Raycaster::renderRay(Grid& grid)
 {
-    std::vector<sf::Vector2f> intersections;
-
+    intersections.clear();
     sf::Vector2f rayStart = attachedEntity->shape.getPosition();
     float startAngle = attachedEntity->orientation - attachedEntity->fov / 2.f;
 
@@ -121,7 +120,7 @@ std::vector<sf::Vector2f> Raycaster::renderRay(Grid& grid)
 
         intersections.push_back(rayStart + rayDir * distance);
     }
-    return intersections;
+    //return intersections;
 }
 
 float Raycaster::degToRad(float degree)
