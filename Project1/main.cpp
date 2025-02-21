@@ -21,12 +21,12 @@ int main() {
     std::vector<Entity*> players;
     players.push_back(new Player({ 400,400 }, 10));
     std::vector<Entity*> enemies;
-    //enemies.push_back(new EnemyFSM(player, { 100, 100 },50.0f, 100));
-    //enemies.push_back(new EnemyFSM(player ,{ 700, 100 },50.0f, 100));
+    enemies.push_back(new EnemyFSM(player, { 100, 100 },50.0f, 100));
+    enemies.push_back(new EnemyFSM(player ,{ 700, 100 },50.0f, 100));
 
     enemies.push_back(new EnemyGOAP(player, { 100, 100 }, 50.0f, 100));  // Exemple d'ennemi
     enemies.push_back(new EnemyGOAP(player, { 700, 100 }, 50.0f, 100));
-    EnemyGOAP test(player, { 500,500 }, 50.0f, 10);
+    EnemyGOAP enemyGOAP(player, { 500,500 }, 50.0f, 10);
     Grid grid;
     grid.loadFromFile("map.txt");
 
@@ -46,14 +46,11 @@ int main() {
         enemies[0]->update(deltaTime, grid, players);
 
         player.update(deltaTime, grid, enemies);
-        //test.flee(player.getpos());
-        //test.hunt(player.getpos());
-        //test.PerformActions(test.state);
-        test.updateState(test.getState(), test);
+        enemyGOAP.updateState(enemyGOAP.getState(), enemyGOAP);
         window.clear();
         grid.draw(window);
         window.draw(player.shape);
-        window.draw(test.shape);
+        window.draw(enemyGOAP.shape);
         for (const auto& enemy : enemies) {
             if (enemy->isAlive()) {
                 window.draw(enemy->shape);
