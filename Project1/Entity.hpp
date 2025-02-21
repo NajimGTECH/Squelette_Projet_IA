@@ -13,6 +13,11 @@ public:
     int health;
     Pathfinding pathfinding;
 
+    float fov = 60.0f; //fov
+    float orientation = 90.0f; //orientation
+
+    float deltatime; //test
+
     //virtual void update(float deltaTime, Grid& grid) = 0;
 
     Entity(float x, float y, sf::Color color, int hp);

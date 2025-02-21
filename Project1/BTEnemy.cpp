@@ -33,10 +33,10 @@ void BTEnemy::update(float deltaTime, Grid& grid, Player& player)
 	radiusVision.setPosition(shape.getPosition());
 
 	velocity = { 0, 0 };
+	deltatime = deltaTime;
 
 	float distance = std::hypot(playerPos.x - pos.x, playerPos.y - pos.y);
 	auto blackboard = behavior->getBlackboard();
-
 
 	if (distance <= DETECTION_RADIUS)
 	{

@@ -81,6 +81,12 @@
     <ClCompile Include="Pathfinding.cpp">
       <Filter>Fichiers sources\Pathfinding</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyFSM.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Raycaster.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp">
@@ -120,6 +126,12 @@
       <Filter>Fichiers d%27en-tête\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="Raycaster.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFSM.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

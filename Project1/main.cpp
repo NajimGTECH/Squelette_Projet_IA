@@ -5,18 +5,16 @@
 //#include "Enemy.hpp"
 #include "BTEnemy.h"
 #include "Grid.hpp"
+#include "Window.h"
 
 #include <vector>
 #include <ctime>
-
-const int WINDOW_WIDTH = 1480;
-const int WINDOW_HEIGHT = 880;
 
 
 int main() {
     srand(time(NULL));
 
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Jeu SFML - IA Ennemis");
+    sf::RenderWindow window(sf::VideoMode(window::WINDOW_WIDTH, window::WINDOW_HEIGHT), "Jeu SFML - IA Ennemis");
     window.setFramerateLimit(60);
 
     std::vector<Entity*> players;
@@ -35,14 +33,18 @@ int main() {
     std::vector<std::shared_ptr<BTEnemy>> btenemies;
     auto btEnemy = std::make_shared<BTEnemy>(200, 200);
     btEnemy->initBTree(grid);
+    btEnemy->raycast.attachedEntity = btEnemy;
     btenemies.push_back(btEnemy);
     auto btEnemy2 = std::make_shared<BTEnemy>(1000, 550);
     btEnemy2->initBTree(grid);
+    btEnemy2->raycast.attachedEntity = btEnemy2;
     btenemies.push_back(btEnemy2);
 
     sf::Clock clock;
 
     while (window.isOpen()) {
+        window.clear();
+
         sf::Time dt = clock.restart();
         float deltaTime = dt.asSeconds();
 
@@ -60,9 +62,22 @@ int main() {
             btenemy->update(deltaTime, grid, player);
         }
 
-        window.clear();
 
         grid.draw(window);
+
+        for (auto& btenemy : btenemies) {
+            auto rayIntersections = btenemy->raycast.renderRay(grid);
+            sf::VertexArray fov_Vizualisation(sf::TrianglesFan, rayIntersections.size() + 1);
+            std::cout << "Intersections count: " << rayIntersections.size() << std::endl;
+            fov_Vizualisation[0].position = btenemy->shape.getPosition();
+
+            for (size_t i = 1; i < rayIntersections.size() + 1; i++)
+            {
+                fov_Vizualisation[i].position = rayIntersections[i - 1];
+            }
+            window.draw(fov_Vizualisation);
+        }
+
         window.draw(player.shape);
 
         for (const auto& btenemy : btenemies)

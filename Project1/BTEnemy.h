@@ -3,7 +3,7 @@
 
 #include "Player.hpp"
 #include "BehaviorTree.h"
-//#include "Raycaster.h"
+#include "Raycaster.h"
 
 #include <cmath>
 
@@ -17,6 +17,7 @@ public:
     sf::CircleShape radiusVision; //see
 
     std::shared_ptr<BTree> behavior = nullptr;
+    Raycaster raycast;
 
     BTEnemy(float x, float y);
     void update(float deltaTime, Grid& grid, std::vector<Entity*> neededEntities) override;

@@ -161,6 +161,7 @@
     <ClCompile Include="Pathfinding.cpp" />
     <ClCompile Include="PFNode.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Raycaster.cpp" />
     <ClCompile Include="SelectorNode.cpp" />
     <ClCompile Include="SequenceNode.cpp" />
     <ClCompile Include="SequenceNode.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Raycaster.h" />
     <ClInclude Include="SelectorNode.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

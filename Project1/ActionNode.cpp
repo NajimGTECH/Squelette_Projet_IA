@@ -10,7 +10,7 @@ ActionNode::ActionNode(const std::string& actionName)
 
 NodeState ActionNode::execute(Grid& grid, std::shared_ptr<Blackboard> blackboard, std::shared_ptr<Entity> entity)
 {
-	std::cout << "Action: " << m_actionName << std::endl;
+	//std::cout << "Action: " << m_actionName << std::endl;
 	return NodeState::SUCCESS;
 }
 
@@ -48,7 +48,7 @@ NodeState PatrolNode::execute(Grid& grid, std::shared_ptr<Blackboard> blackboard
     sf::Vector2i targetGridPosition = (sf::Vector2i)goTo / CELL_SIZE;
     sf::Vector2i entitytGridPosition = (sf::Vector2i)entity->shape.getPosition() / CELL_SIZE;
 
-    std::cout << "Action: " << m_actionName << "\t->\t{ " << targetGridPosition.x << ", " << targetGridPosition.y << " }" << std::endl;
+    //std::cout << "Action: " << m_actionName << "\t->\t{ " << targetGridPosition.x << ", " << targetGridPosition.y << " }" << std::endl;
 
     auto path = entity->pathfinding.findPath(grid,
         entitytGridPosition,
@@ -58,6 +58,24 @@ NodeState PatrolNode::execute(Grid& grid, std::shared_ptr<Blackboard> blackboard
     if (!path.empty() && entitytGridPosition != targetGridPosition) {
         direction = { ((float)path[1].x * CELL_SIZE + CELL_SIZE / 2.f) - entity->shape.getPosition().x,
                       ((float)path[1].y * CELL_SIZE + CELL_SIZE / 2.f) - entity->shape.getPosition().y };
+
+        float angle = std::atan2(direction.y, direction.x) * 180 / 3.14159265;
+        if (angle < 0)
+            angle += 360;
+
+        float rotationSpeed = 5.0f;
+        float deltaAngle = angle - entity->orientation;
+
+        if (std::abs(deltaAngle) > 180) {
+            deltaAngle = (deltaAngle > 0) ? deltaAngle - 360 : deltaAngle + 360;
+        }
+
+        entity->orientation += deltaAngle * rotationSpeed * entity->deltatime;
+
+        if (entity->orientation < 0)
+            entity->orientation += 360;
+        else if (entity->orientation >= 360)
+            entity->orientation -= 360;
     }
     else
     {
@@ -108,7 +126,7 @@ NodeState ChaseNode::execute(Grid& grid, std::shared_ptr<Blackboard> blackboard,
 	sf::Vector2i targetGridPosition = (sf::Vector2i)targetPosition / CELL_SIZE;
 	sf::Vector2i entitytGridPosition = (sf::Vector2i)entity->shape.getPosition() / CELL_SIZE;
 
-	std::cout << "Action: " << m_actionName << "\t->\t{ " << targetGridPosition.x << ", " << targetGridPosition.y << " }" << std::endl;
+	//std::cout << "Action: " << m_actionName << "\t->\t{ " << targetGridPosition.x << ", " << targetGridPosition.y << " }" << std::endl;
 
 	auto path = entity->pathfinding.findPath(grid,
 				entitytGridPosition,
@@ -118,6 +136,24 @@ NodeState ChaseNode::execute(Grid& grid, std::shared_ptr<Blackboard> blackboard,
     if (!path.empty() && entitytGridPosition != targetGridPosition) {
         direction = { ((float)path[1].x * CELL_SIZE + CELL_SIZE / 2.f) - entity->shape.getPosition().x,
                       ((float)path[1].y * CELL_SIZE + CELL_SIZE / 2.f) - entity->shape.getPosition().y };
+
+        float angle = std::atan2(direction.y, direction.x) * 180 / 3.14159265;
+        if (angle < 0)
+            angle += 360;
+
+        float rotationSpeed = 5.0f;
+        float deltaAngle = angle - entity->orientation;
+
+        if (std::abs(deltaAngle) > 180) {
+            deltaAngle = (deltaAngle > 0) ? deltaAngle - 360 : deltaAngle + 360;
+        }
+
+        entity->orientation += deltaAngle * rotationSpeed * entity->deltatime;
+
+        if (entity->orientation < 0)
+            entity->orientation += 360;
+        else if (entity->orientation >= 360)
+            entity->orientation -= 360;
     }
     else
     {
@@ -149,7 +185,7 @@ NodeState SearchNode::execute(Grid& grid, std::shared_ptr<Blackboard> blackboard
     sf::Vector2i targetGridPosition = (sf::Vector2i)targetPosition / CELL_SIZE;
     sf::Vector2i entitytGridPosition = (sf::Vector2i)entity->shape.getPosition() / CELL_SIZE;
 
-    std::cout << "Action: " << m_actionName << "\t->\t{ " << targetGridPosition.x << ", " << targetGridPosition.y << " }" << std::endl;
+    //std::cout << "Action: " << m_actionName << "\t->\t{ " << targetGridPosition.x << ", " << targetGridPosition.y << " }" << std::endl;
 
     auto path = entity->pathfinding.findPath(grid,
         entitytGridPosition,
@@ -159,6 +195,25 @@ NodeState SearchNode::execute(Grid& grid, std::shared_ptr<Blackboard> blackboard
     if (!path.empty() && entitytGridPosition != targetGridPosition) {
         direction = { ((float)path[1].x * CELL_SIZE + CELL_SIZE / 2.f) - entity->shape.getPosition().x,
                       ((float)path[1].y * CELL_SIZE + CELL_SIZE / 2.f) - entity->shape.getPosition().y };
+
+        float angle = atan2(direction.y, direction.x) * -180 / 3.14159265;
+        
+        if (angle < 0)
+            angle += 360;
+
+        float rotationSpeed = 5.0f;
+        float deltaAngle = angle - entity->orientation;
+
+        if (std::abs(deltaAngle) > 180) {
+            deltaAngle = (deltaAngle > 0) ? deltaAngle - 360 : deltaAngle + 360;
+        }
+
+        entity->orientation += deltaAngle * rotationSpeed * entity->deltatime;
+
+        if (entity->orientation < 0)
+            entity->orientation += 360;
+        else if (entity->orientation >= 360)
+            entity->orientation -= 360;
     }
     else
     {
