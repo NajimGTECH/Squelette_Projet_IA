@@ -10,7 +10,6 @@
 #include <vector>
 #include <ctime>
 
-
 int main() {
     srand(time(NULL));
 

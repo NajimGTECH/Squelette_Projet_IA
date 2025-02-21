@@ -20,6 +20,7 @@ protected:
     std::string m_actionName;
 };
 
+
 class PatrolNode : public ActionNode {
 public:
     int stopTime = 1;
