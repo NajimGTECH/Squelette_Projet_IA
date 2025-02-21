@@ -25,6 +25,7 @@ const int WINDOW_HEIGHT = 600;
 >>>>>>>>> Temporary merge branch 2
 
     std::vector<Entity*> players;
+<<<<<<< HEAD
     Player player(200, 400, 10);
     player.shape.setOrigin(player.shape.getSize() / 2.f);
     players.push_back(new Player(200, 400, 10));
@@ -42,6 +43,16 @@ const int WINDOW_HEIGHT = 600;
     std::vector<Entity*> enemies;
 	enemies.push_back(new Enemy(100, 100, 10));
 	enemies.push_back(new Enemy(700, 100, 100));
+=======
+    players.push_back(new Player({ 400,400 }, 10));
+    std::vector<Entity*> enemies;
+    //enemies.push_back(new EnemyFSM(player, { 100, 100 },50.0f, 100));
+    //enemies.push_back(new EnemyFSM(player ,{ 700, 100 },50.0f, 100));
+
+    enemies.push_back(new EnemyGOAP(player, { 100, 100 }, 50.0f, 100));  // Exemple d'ennemi
+    enemies.push_back(new EnemyGOAP(player, { 700, 100 }, 50.0f, 100));
+    EnemyGOAP test(player, { 500,500 }, 50.0f, 10);
+>>>>>>> parent of e309c11 (Finish)
     Grid grid;
     grid.loadFromFile("map.txt");
 
@@ -76,7 +87,15 @@ const int WINDOW_HEIGHT = 600;
         }
 
 
+<<<<<<< HEAD
         enemyGOAP.updateState(enemyGOAP.getState(), enemyGOAP);
+=======
+        player.update(deltaTime, grid, enemies);
+        //test.flee(player.getpos());
+        //test.hunt(player.getpos());
+        //test.PerformActions(test.state);
+        test.updateState(test.getState(), test);
+>>>>>>> parent of e309c11 (Finish)
         window.clear();
         player.update(deltaTime, grid, enemies);
         for (auto& enemy : enemies) {
@@ -99,6 +118,10 @@ const int WINDOW_HEIGHT = 600;
         }
 
         window.draw(player.shape);
+<<<<<<< HEAD
+=======
+        window.draw(test.shape);
+>>>>>>> parent of e309c11 (Finish)
         for (const auto& enemy : enemies) {
             if (enemy->isAlive()) {
                 window.draw(enemy->shape);
