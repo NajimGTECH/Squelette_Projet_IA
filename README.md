@@ -25,5 +25,5 @@ Commentaires:
 
 
   !! Si vous voulez tester cette démo, veuillez suivre ces consignes !!
-  -Vous devez ajouter les librairies dynamiques (.dll) situées dans le fichier "bin" de SFML dans (SolutionPath)/x64/Release ou bien (SolutionPath)/x64/Debug
-  -Amusez vous!
+   -Vous devez ajouter les librairies dynamiques (.dll) situées dans le fichier "bin" de SFML dans (SolutionPath)/x64/Release ou bien (SolutionPath)/x64/Debug
+   -Amusez vous!
