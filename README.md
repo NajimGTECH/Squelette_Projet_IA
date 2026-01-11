@@ -12,7 +12,7 @@ Répartition des taches:
     -Implémentation de l'algorithme A-Star
 
 Derniere branche fonctionnelle:
-  -raycast test [push by NajimGTECH]
+  -raycast thing [push by NajimGTECH]
 
 Controles:
   -Déplacements: Z,Q,S,D
