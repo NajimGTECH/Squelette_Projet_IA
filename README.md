@@ -2,6 +2,7 @@ Demonstration de comportements d'IA. [17/02/2025 - 21/02/2025]
 BAKKALI Najim | PONCE Amadéo
 
 Répartition des taches:
+
   *PONCE Amadéo:
     -FSM
     -GOAP
